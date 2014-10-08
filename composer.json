@@ -11,8 +11,7 @@
         }
     ],
     "require":{
-        "magento-hackathon/magento-composer-installer":"*",
-        "sergoslav/magento-devtools":"*"
+        "magento-hackathon/magento-composer-installer":"*"
     },
     "extra": {
         "map": [
