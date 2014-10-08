@@ -1,10 +1,10 @@
 <?php
 /**
- * Class SnowCommerce_Develop_OrderController
+ * Class SLV_DevTools_OrderController
  *
  * Develop Order Controller
  */
-class SnowCommerce_Develop_OrderController extends Mage_Core_Controller_Front_Action
+class SLV_DevTools_OrderController extends Mage_Core_Controller_Front_Action
 {
 
     protected function _getProductId()
@@ -22,8 +22,24 @@ class SnowCommerce_Develop_OrderController extends Mage_Core_Controller_Front_Ac
         return Mage::getModel('customer/customer')->load($customerId);
     }
 
+
+    /**
+     *
+    for (var i = 0; i < 100; i++)
+    {
+    xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.open("GET","http://test.loc/index.php/slv_devtool/order/placeorder/",true);
+    xmlhttp.send();
+    }
+     *
+     * @return Mage_Core_Controller_Varien_Action
+     * @throws Exception
+     */
     public function placeorderAction()
     {
+        $recursion = $this->getRequest()->getParam('recursion');
+
         $customer = $this->_getCustomer();
 
         $quote = Mage::getModel('sales/quote')
@@ -88,8 +104,6 @@ class SnowCommerce_Develop_OrderController extends Mage_Core_Controller_Front_Ac
             $quote
                 ->setIsActive(false)
                 ->save();
-
-            return $this->_redirect('checkout/onepage/success');
         }
         catch(Exception $e)
         {
@@ -99,5 +113,12 @@ class SnowCommerce_Develop_OrderController extends Mage_Core_Controller_Front_Ac
             die();
 //            return $this->_redirect('');
         }
+
+//        if($recursion)
+//        {
+//            return $this->_redirect('*/*/*',array('recursion' => 1));
+//        }
+
+        return $this->_redirect('checkout/onepage/success');
     }
 }
