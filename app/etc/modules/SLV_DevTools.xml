@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SLV_DevTools>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SLV_DevTools>
+    </modules>
+</config>

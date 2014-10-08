@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SLV_DevTools>
+            <version>0.1.0</version>
+        </SLV_DevTools>
+    </modules>
+
+    <frontend>
+        <routers>
+            <slv_devtools>
+                <use>standard</use>
+                <args>
+                    <module>SLV_DevTools</module>
+                    <frontName>slv_devtool</frontName>
+                </args>
+            </slv_devtools>
+        </routers>
+        <!--<layout>-->
+        <!--<updates>-->
+        <!--<wms>-->
+        <!--<file>wms.xml</file>-->
+        <!--</wms>-->
+        <!--</updates>-->
+        <!--</layout>-->
+    </frontend>
+
+    <global>
+        <models>
+            <slv_devtools>
+                <class>SLV_DevTools_Model</class>
+                <resourceModel>slv_devtools_resource</resourceModel>
+            </slv_devtools>
+            <slv_devtools_resource>
+                <class>SLV_DevTools_Model_Resource</class>
+            </slv_devtools_resource>
+        </models>
+        <blocks>
+            <slv_devtools>
+                <class>SLV_DevTools_Block</class>
+            </slv_devtools>
+        </blocks>
+        <helpers>
+            <slv_devtools>
+                <class>SLV_DevTools_Helper</class>
+            </slv_devtools>
+        </helpers>
+    </global>
+</config>

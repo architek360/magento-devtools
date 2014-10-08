@@ -1,0 +1,24 @@
+{
+    "name":"sergoslav/magento-devtools",
+    "type":"magento-module",
+    "homepage":"https://github.com/sergoslav/magento-devtools.git",
+    "description":"Magento Extension - Develop Tools",
+    "minimum-stability": "dev",
+    "authors":[
+        {
+            "name":"Sergey Petrov",
+            "email":"sergoslav@gmail.com"
+        }
+    ],
+    "require":{
+        "magento-hackathon/magento-composer-installer":"*",
+        "sergoslav/magento-devtools":"*"
+    },
+    "extra": {
+        "map": [
+            ["app/code/local/SLV/DevTools", "app/code/local/SLV/DevTools"],
+            ["app/etc/modules/SLV_DevTools.xml", "app/etc/modules/SLV_DevTools.xml"]
+        ],
+        "auto-append-gitignore": true
+    }
+}
