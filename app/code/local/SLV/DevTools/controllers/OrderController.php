@@ -14,8 +14,20 @@ class SLV_DevTools_OrderController extends Mage_Core_Controller_Front_Action
         return $productsId[array_rand($productsId)];
     }
 
+    protected function _getSuperAttributes($product)
+    {
+        #TODO: it is hard value!
+        $colors = array(17);
+        $sizes = array(262,263,264,265,266,267);
+
+        $result = array(92 => $colors[array_rand($colors)], 167 => $sizes[array_rand($sizes)]);
+
+        return $result;
+    }
+
     protected function _getCustomer()
     {
+        #TODO: it is hard value!
         $customersId = array(1,10,4,5,8);
         $customerId = $customersId[array_rand($customersId)];
 
@@ -49,10 +61,21 @@ class SLV_DevTools_OrderController extends Mage_Core_Controller_Front_Action
         $product = Mage::getModel('catalog/product')->load($this->_getProductId());
 
 
-        $item = $quote->addProduct($product, new Varien_Object(array(
-            'product'         => $product->getId(),
-            'qty'             => 1,
-        )));
+        if($product->isConfigurable())
+        {
+            $item = $quote->addProduct($product, new Varien_Object(array(
+                'product'         => $product->getId(),
+                'qty'             => 1,
+                'super_attribute' => $this->_getSuperAttributes($product)
+            )));
+        }
+        else
+        {
+            $item = $quote->addProduct($product, new Varien_Object(array(
+                'product'         => $product->getId(),
+                'qty'             => 1,
+            )));
+        }
 
         if(!is_object($item)) throw new Exception('something wrong with product');
 
@@ -100,7 +123,7 @@ class SLV_DevTools_OrderController extends Mage_Core_Controller_Front_Action
             $service = Mage::getModel('sales/service_quote', $quote);
             $service->submitAll();
             $order = $service->getOrder();
-            $order->sendNewOrderEmail();
+            //$order->sendNewOrderEmail();
             $quote
                 ->setIsActive(false)
                 ->save();
